@@ -5,5 +5,3 @@ def chai(n):
         return 1;
     print(n)
     return chai(n - 1)
-
-chai('x')    
