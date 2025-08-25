@@ -1,7 +1,10 @@
 class Car:
+    total_car = 0
+
     def __init__(self, brand, model):
         self.__brand = brand
         self.model = model
+        Car.total_car += 1
 
     def get_brand(self):
         return self.__brand
@@ -30,6 +33,9 @@ my_tesla = ElectricCar("Tesla", "Model S", "85kWh")
 print(my_car.fullName())
 print(my_car.get_brand())
 print(my_car.fuel_type())
+print()
+print(Car.total_car)
+print()
 print(my_tesla.fullName())
 print(my_tesla.get_brand())
 print(my_tesla.fuel_type())
