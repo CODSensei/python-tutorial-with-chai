@@ -36,8 +36,23 @@ class ElectricCar(Car):
         return "Electricity"
 
 
+class Battery:
+    def battery_info(self):
+        return "this is battery"
+
+
+class Engine:
+    def engine_info(self):
+        return "this is engine"
+
+
+class ElectricShit(Battery, Engine, Car):
+    pass
+
+
 my_car = Car("BMW", "M5-CS")
 my_tesla = ElectricCar("Tesla", "model S", "85kWh")
+formulaE = ElectricShit("Mclaren", "MCL-1")
 
 print(my_car.fullName())
 print(my_car.get_brand())
@@ -54,3 +69,7 @@ print(my_tesla.get_brand())
 print(my_tesla.fuel_type())
 print(isinstance(my_tesla, Car))
 print(isinstance(my_tesla, ElectricCar))
+print()
+print(formulaE.fullName())
+print(formulaE.engine_info())
+print(formulaE.battery_info())
