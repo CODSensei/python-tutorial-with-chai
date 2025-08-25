@@ -4,6 +4,9 @@ class Car:
         self.brand = brand
         self.model = model
 
+    def fullName(self):
+        return f"{self.brand} {self.model}"
 
-my_car = Car("BMW", "M5 CS")
-print(my_car.brand, my_car.model)
+
+my_car = Car("BMW", "M5-CS")
+print(my_car.fullName())
