@@ -3,14 +3,14 @@ class Car:
 
     def __init__(self, brand, model):
         self.__brand = brand
-        self.model = model
+        self.__model = model
         Car.total_car += 1
 
     def get_brand(self):
         return self.__brand
 
     def fullName(self):
-        return f"{self.__brand} {self.model}"
+        return f"{self.__brand} {self.__model}"
 
     def fuel_type(self):
         return "Petrol or Diesel"
@@ -19,10 +19,14 @@ class Car:
     def general_description():
         return "Combustion Engine Cars Sounds Good"
 
+    @property
+    def model(self):
+        return self.__model
+
 
 class ElectricCar(Car):
-    def __init__(self, __brand, model, battery_size):
-        super().__init__(__brand, model)
+    def __init__(self, __brand, __model, battery_size):
+        super().__init__(__brand, __model)
         self.battery_size = battery_size
 
     def fullName(self):
@@ -33,11 +37,12 @@ class ElectricCar(Car):
 
 
 my_car = Car("BMW", "M5-CS")
-my_tesla = ElectricCar("Tesla", "Model S", "85kWh")
+my_tesla = ElectricCar("Tesla", "model S", "85kWh")
 
 print(my_car.fullName())
 print(my_car.get_brand())
 print(my_car.fuel_type())
+print(my_car.model)
 print()
 print(Car.total_car)
 print(Car.general_description())
