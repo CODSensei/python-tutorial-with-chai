@@ -15,6 +15,10 @@ class Car:
     def fuel_type(self):
         return "Petrol or Diesel"
 
+    @staticmethod
+    def general_description():
+        return "Combustion Engine Cars Sounds Good"
+
 
 class ElectricCar(Car):
     def __init__(self, __brand, model, battery_size):
@@ -30,11 +34,13 @@ class ElectricCar(Car):
 
 my_car = Car("BMW", "M5-CS")
 my_tesla = ElectricCar("Tesla", "Model S", "85kWh")
+
 print(my_car.fullName())
 print(my_car.get_brand())
 print(my_car.fuel_type())
 print()
 print(Car.total_car)
+print(Car.general_description())
 print()
 print(my_tesla.fullName())
 print(my_tesla.get_brand())
