@@ -5,8 +5,8 @@ cursor = conn.cursor()
 
 cursor.execute(
     """
-    create table if not exits videos (
-        id int primary key,
+    create table if not exists videos (
+        id integer primary key,
         name text not null,
         time text not null
     )
@@ -15,19 +15,26 @@ cursor.execute(
 
 
 def list_videos():
-    pass
+    cursor.execute("select * from videos")
+    for row in cursor.fetchall():
+        print(row)
 
 
 def add_video(name, time):
-    pass
+    cursor.execute("insert into videos(name, time) values(?,?)", (name, time))
+    conn.commit()
 
 
 def update_video(video_id, name, time):
-    pass
+    cursor.execute(
+        "update videos set name = ?, time = ? where id = ?", (name, time, video_id)
+    )
+    conn.commit()
 
 
 def delete_video(video_id):
-    pass
+    cursor.execute("delete from videos where id = ?", (video_id,))
+    conn.commit()
 
 
 def main():
@@ -50,7 +57,7 @@ def main():
             video_id = input("Enter video id: ")
             name = input("Enter the video name: ")
             time = input("Enter the video time: ")
-            update_video(video_id, name, name)
+            update_video(video_id, name, time)
         elif choice == "4":
             video_id = input("Enter video id: ")
             delete_video(video_id)
@@ -60,6 +67,7 @@ def main():
             print("Invalid Choice!!")
 
     conn.close()
+
 
 if __name__ == "__main__":
     main()
