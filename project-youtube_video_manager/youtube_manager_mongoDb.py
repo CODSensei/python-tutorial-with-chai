@@ -1,17 +1,33 @@
+import pymongo
+from bson import ObjectId
+
+client = pymongo.MongoClient(
+    "mongodb+srv://youtube_manager:yt_mgr@cluster0.tdomqfv.mongodb.net"
+)
+
+db = client["ytmanager"]
+video_collection = db["videos"]
+
+print(video_collection)
+
+
 def list_videos():
-    pass
+    for video in video_collection.find():
+        print(f"ID: {video['_id']}, Name: {video['name']} and Time: {video['time']}")
 
 
 def add_video(name, time):
-    pass
+    video_collection.insert_one({"name": name, "time": time})
 
 
 def update_video(video_id, name, time):
-    pass
+    video_collection.update_one(
+        {"_id": ObjectId(video_id)}, {"$set": {"name": name, "time": time}}
+    )
 
 
 def delete_video(video_id):
-    pass
+    video_collection.delete_one({"_id": ObjectId(video_id)})
 
 
 def main():
@@ -42,6 +58,7 @@ def main():
             break
         else:
             print("Invalid Choice!!")
+
 
 if __name__ == "__main__":
     main()
